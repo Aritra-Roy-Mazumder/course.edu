@@ -256,8 +256,7 @@ def get_as_list(list_of_dict, prop):
     return new_lst
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
 
 
 

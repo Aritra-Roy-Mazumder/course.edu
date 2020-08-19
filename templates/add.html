@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Course
+{% endblock %}
+
+{% block main %}
+
+
+
+    <form action="/add" method="post">
+        <!-- Gets what the user wants to call the class-->
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="title" placeholder="Class Title" type="text">
+        </div>
+        <!-- Gets the room number of the class-->
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="room" placeholder="Room Number" type="text">
+        </div>
+        <!-- Gets what block/period the class is-->
+        <div class="form-group">
+            <select class="form-control" name="block">
+                <option disabled="" selected="" value="">Block</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+
+
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+
+
+
+{% endblock %}

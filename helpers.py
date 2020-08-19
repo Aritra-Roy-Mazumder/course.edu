@@ -4,7 +4,7 @@ import requests
 from flask import redirect, render_template, request, session
 from functools import wraps
 
-
+# Returns error messege
 def apology(message, code=400):
     """Render message as an apology to user."""
     def escape(s):
@@ -20,6 +20,7 @@ def apology(message, code=400):
     return render_template("apology.html", top=code, bottom=escape(message)), code
 
 
+# Makes sure user is logged in
 def login_required(f):
     """
     Decorate routes to require login.

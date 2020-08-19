@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+
+
+        <!-- Prints which search term the results are for-->
+        <h1>Results for  "{{rows[0]["username"]}}"</h1>
+
+        <!-- Prints table of people who have usernames similar to search term, and buttons to visit their profile-->
+        <table class="table table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Button</th>
+                <th>Bio</th>
+            </tr>
+
+            {% for row in rows %}
+             <tr>
+                <td>{{row['username']}}</td>
+                <td>
+                        <form action="/profile/{{row['user_id']}}" method="post">
+                            <button class="btn btn-primary" type="submit" name="person_id">Visit Profile</button>
+                        </form></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+
+
+
+{% endblock %}

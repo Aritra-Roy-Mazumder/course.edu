@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Friend Requests
+{% endblock %}
+
+{% block main %}
+
+
+
+        <h1>Recieved Friend Requests</h1>
+
+        <!-- Prints a table of all the user's recieved friend requests, a button to visit their profile, and a button to accept friend request-->
+        <table class="table table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Visit Profile</th>
+                <th>Accept Request</th>
+            </tr>
+            {% for row in rows %}
+             <tr>
+                <td>{{row['username']}}</td>
+                <td>
+                        <form action="/profile/{{row['user_id']}}" method="post">
+                            <button class="btn btn-primary" type="submit" name="person_id">Visit Profile</button>
+                        </form>
+                </td>
+                <td>
+                    <form action="/process_request/4/{{user_id}}/{{row['user_id']}}" method="post">
+                        <button class="btn btn-primary" type="submit">Accept Friend Request</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+
+
+
+
+
+
+{% endblock %}

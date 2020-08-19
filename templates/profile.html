@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile: {{person_row[0]['username']}}
+{% endblock %}
+
+{% block main %}
+
+
+        <!-- Prints out person's profile picture and name -->
+        <img src="../static/1.jpg" id="1" alt="*Profile Holder*">
+
+        <h1>{{person_row[0]['username']}}</h1>
+            <h1></h1>
+        <!-- If profile is of user's friend, print out button to allow user to remove them as a friend-->
+        {% if friend_case == 3 %}
+
+            <form action="/process_request/3/{{user_id}}/{{person_id}}" method="post">
+                <button class="btn btn-primary" type="submit">Remove Friend</button>
+            </form>
+        {% else %}
+        <!-- If profile is not of a friend, print out button to allow user to send a friend request-->
+            {% if friend_case == 1 %}
+            <form action="/process_request/1/{{user_id}}/{{person_id}}" method="post">
+                <button class="btn btn-primary" type="submit">Send Friend Request</button>
+            </form>
+            {% else %}
+                <!-- If profile is of someone the user sent a friend request to, print out button to allow user to cancel friend request-->
+                {% if friend_case == 2 %}
+                <form action="/process_request/2/{{user_id}}/{{person_id}}" method="post">
+                    <button class="btn btn-primary" type="submit">Cancel Request</button>
+                </form>
+                {% else %}
+                    <!-- If profile is of someone the user has recived a friend request from, print out button to allow user to accept friend request-->
+                    {% if friend_case == 4 %}
+                    <form action="/process_request/4/{{user_id}}/{{person_id}}" method="post">
+                        <button class="btn btn-primary" type="submit">Accept Request</button>
+                    </form>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        <!-- If its the user's own or user's friend's profile -->
+        {% if friend_case == 3 or friend_case == 0 %}
+        <!-- Print table of the person's courses -->
+            <h1></h1>
+            <h1>Courses</h1>
+            <table class="table table-striped">
+            <tr>
+                <th>Class</th>
+                <th>Room</th>
+                <th>Block</th>
+            </tr>
+
+            {% for row in rows %}
+             <tr>
+                <td>{{row['class_title']}}</td>
+                <td>{{row['course_id']//10}}</td>
+                <td>{{row['course_id']%10}}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+
+
+
+{% endblock %}

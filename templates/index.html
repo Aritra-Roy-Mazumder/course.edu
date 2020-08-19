@@ -8,7 +8,39 @@
 
 
 
-        <h1>Holder for index</h1>
+        <h1>My Courses</h1>
+
+        <!-- Prints a table of all the user's classes-->
+        <table class="table table-striped">
+            <tr>
+                <th>Class</th>
+                <th>Room</th>
+                <th>Block</th>
+                <th></th>
+            </tr>
+
+            {% for row in rows %}
+             <tr>
+                <td>{{row['class_title']}}</td>
+                <td>{{row['course_id']//10}}</td>
+                <td>{{row['course_id']%10}}</td>
+                <td>
+                <form action="/with_whom/{{row['course_id']}}" method="post">
+                        <button class="btn btn-primary" type="submit">With Whom?</button>
+                </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+
+    <!-- Button to add courses that the user is taking-->
+    <form action="/add" method="get">
+
+        <button class="btn btn-primary" type="submit">Add Course</button>
+    </form>
+
 
 
 

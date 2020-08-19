@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Friends
+{% endblock %}
+
+{% block main %}
+
+
+
+        <h1>My Friends</h1>
+
+        <!-- Prints a table of all the user's friends, with a button to view their profile-->
+        <table class="table table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Visit Profile</th>
+            </tr>
+            {% for row in rows %}
+             <tr>
+                <td>{{row['username']}}</td>
+                <td>
+                        <form action="/profile/{{row['user_id']}}" method="post">
+                            <button class="btn btn-primary" type="submit" name="person_id">Visit Profile</button>
+                        </form></td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+
+
+
+
+
+
+{% endblock %}

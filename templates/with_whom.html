@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+
+        <!-- Prints which class the user is seeing classmates for-->
+        <h1>I have {{course_name}} with:</h1>
+
+
+        <table class="table table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Visit Profile</th>
+            </tr>
+        <!-- Prints people the user has those classes with, and button to visit profile-->
+            {% for row in rows %}
+             <tr>
+                <td>{{row['username']}}</td>
+                <td>
+                        <form action="/profile/{{row['user_id']}}" method="post">
+                            <button class="btn btn-primary" type="submit" name="person_id">Visit Profile</button>
+                        </form></td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+
+
+
+
+
+
+{% endblock %}
